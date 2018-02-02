@@ -28,7 +28,11 @@ class Kafka_producer():
 def main():
     producer = Kafka_producer("127.0.0.1", 9092, "DHTtest")
     for i in range(1000000000000):
-        params = 'test---' + str(i)
+        dht_record = {
+            'times':time.strftime("%H:%M:%S", time.localtime()),
+            'DHT':i
+        }
+        params = dht_record
         print(params)
         producer.sendjsondata(params)
         time.sleep(1)
